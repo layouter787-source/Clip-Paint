@@ -25,13 +25,10 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install Android NDK and CMake
         run: |
           yes | sdkmanager --licenses >/dev/null
-          sdkmanager --install "ndk;27.2.12479018" "cmake;3.22.1"
+          sdkmanager --install "platform-tools" "platforms;android-36" "build-tools;36.0.0" "ndk;27.2.12479018" "cmake;3.22.1"
 
       - name: Extract original CodeAssist project
         run: |
