@@ -43,6 +43,9 @@ jobs:
           test -f app/src/main/cpp/jni_bridge.cpp
           test -f app/src/main/assets/animbrush/stamps.abpack
 
+      - name: Apply Kotlin compatibility patch
+        run: patch --forward -p1 < ci/patches/001-kotlin-dp-jvm-signature.patch
+
       - name: Build debug APK
         run: gradle --no-daemon --stacktrace assembleDebug
 
