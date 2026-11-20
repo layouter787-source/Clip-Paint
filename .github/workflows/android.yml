@@ -12,9 +12,9 @@ permissions:
 
 jobs:
   build:
-    name: Build debug APK
+    name: Build Clip Paint (Kotlin + C++)
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,10 +25,26 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.11.1'
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android NDK and CMake
+        run: |
+          sdkmanager --install "ndk;27.2.12479018" "cmake;3.22.1"
+          yes | sdkmanager --licenses >/dev/null
+
+      - name: Extract original CodeAssist project
+        run: |
+          test -f "clip-paint-pro (3).caproj"
+          mkdir -p /tmp/clip-paint-caproj
+          unzip -q "clip-paint-pro (3).caproj" -d /tmp/clip-paint-caproj
+          test -d /tmp/clip-paint-caproj/project/app/src/main
+          rm -rf app/src/main
+          mkdir -p app/src/main
+          cp -a /tmp/clip-paint-caproj/project/app/src/main/. app/src/main/
+          test -f app/src/main/kotlin/com/clippaint/HomeActivity.kt
+          test -f app/src/main/cpp/jni_bridge.cpp
+          test -f app/src/main/assets/animbrush/stamps.abpack
 
       - name: Build debug APK
         run: gradle --no-daemon --stacktrace assembleDebug
