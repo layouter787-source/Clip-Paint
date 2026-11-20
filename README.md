@@ -1,21 +1,31 @@
-# Clip Paint
+# Clip Paint — Kotlin + C++ (OpenGL ES 3)
 
-Native Android drawing app project.
+App de desenho com **interface em Kotlin** (Views nativas do Android, sem bibliotecas externas) e **motor em C++**
+(camadas em tiles, compositor na GPU, pincéis libmypaint/AnimBrush) ligados por JNI.
 
-## Build
+## Telas
+- **Início** (`HomeActivity`): botão "Novo projeto" e grade de projetos recentes com miniatura (renomear, duplicar, excluir).
+- **Novo projeto** (`NewProjectActivity`): nome, tamanho (presets Quadrado/Retrato/Paisagem/HD/A4/A5 ou personalizado em px/cm),
+  resolução 72/150/300/600 dpi, fundo (branco, transparente ou cor), pré-visualização proporcional e validação (até 16 MP).
+- **Editor** (`EditorActivity`): canvas nativo + barras/painéis em Views. Barra inferior **só com ícones**: Pincel, Borracha,
+  Tinta e Seleção (+ cor atual e conta-gotas). Tocar na ferramenta ativa abre o painel: Pincéis | Ajustes | Cor.
 
-Every push to `main` or `master`, pull request, and manual workflow dispatch runs the Android GitHub Actions build.
+## Ícones
+Material Design Icons (Pictogrammers) convertidos para VectorDrawable em `res/drawable/ic_*.xml`
+(licença em `assets/ICONS-LICENSE-Pictogrammers.txt`). Cores aplicadas por tint em tempo de execução.
 
-The workflow uses JDK 17 and Gradle 8.11.1 and publishes the debug APK as the `clip-paint-debug` workflow artifact.
+## Bibliotecas de pincel (código-fonte em `src/main/cpp/third_party/`)
+libmypaint 1.6.1 (+ json mínimo no lugar do json-c), MyPaint Brushes 2.0.2 (assets) e AnimBrush (~500 pincéis + stamps).
 
-## Current repository state
+## Seleção (baseada na documentação do Procreate)
+Laço, Retângulo, Elipse e Automática; Novo/Somar/Tirar; inverter, suavizar, pintar, limpar, copiar para camada, duplicar;
+Transformar (mover, escalar, girar) em modo Livre, Uniforme ou Perspectiva.
 
-The repository was empty when work began. This commit establishes the Android Gradle project and a buildable starter drawing surface with brush, eraser, undo, and clear controls.
+## Estrutura
+- `src/main/kotlin/com/clippaint/` — Home, NewProject, Editor, CanvasView, Panels, Bars, UiKit, Projects, Native (JNI).
+- `src/main/cpp/` — `jni_bridge.cpp`, `core/` (Engine, Editor, entrada, overlays), `layers/`, `brush/`, `tools/`, `io/`, `graphics/`.
+- Projetos ficam em `files/projects/<id>/` (`project.cpd`, `meta.json`, `thumb.png`); PNGs em `Android/data/com.clippaint/files/exports/`.
 
-The supplied CodeAssist `.caproj` package contains a larger Kotlin/C++ drawing engine, brush libraries, selection tools, and project-management screens. That package has not yet been imported into this Git repository; therefore this starter must not be described as the complete Clip Paint feature set. The native engine and the rest of the supplied app need to be migrated into the Gradle module before the full application is ready.
-
-## Package
-
-- Application ID: `com.clippaint`
-- Minimum Android: API 26
-- Target Android: API 35
+## Observações
+- O C++ foi compilado/testado no PC (motor, pincéis, seleção, E/S). **O Kotlin não pôde ser compilado aqui**; se o CodeAssist
+  apontar erros, corrija conforme o log.

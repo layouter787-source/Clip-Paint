@@ -1,0 +1,204 @@
+G|Dieterle
+B|Dieterle|8B Pencil|Dieterle_8B_Pencil_1.myb||6.6
+B|Dieterle|Flat2|Dieterle_Flat2_1.myb|s|2.2
+B|Dieterle|HalfToneCMY|Dieterle_HalfToneCMY_1.myb|s|5.8
+B|Dieterle|Round|Dieterle_Round_1.myb|s|13.4
+B|Dieterle|arrow|Dieterle_arrow_1.myb||4.0
+B|Dieterle|Fan|Dieterle_Fan_1.myb|s|2.2
+B|Dieterle|Fountain SF|Dieterle_Fountain_SF_1.myb||3.0
+B|Dieterle|Fount-offset|Dieterle_Fount-offset_1.myb||4.0
+B|Dieterle|HalfTone|Dieterle_HalfTone_1.myb|s|7.9
+B|Dieterle|Pencil- Left Handed|Dieterle_Pencil-_Left_Handed.myb||9.0
+B|Dieterle|Blender|Dieterle_Blender.myb|s|4.0
+B|Dieterle|Dissolver|Dieterle_Dissolver.myb|s|7.3
+B|Dieterle|Eraser|Dieterle_Eraser.myb|es|3.0
+B|Dieterle|Splash|Dieterle_Splash.myb|s|5.4
+B|Dieterle|Flight Feathers|Dieterle_Flight_Feathers.myb|s|1.6
+B|Dieterle|Tail Feathers2|Dieterle_Tail_Feathers2.myb|s|1.6
+B|Dieterle|Tail Feathers|Dieterle_Tail_Feathers.myb||4.2
+B|Dieterle|Posterizer|Dieterle_Posterizer.myb||3.0
+B|Dieterle|WateryFlatbrush|Dieterle_WateryFlatbrush.myb|s|1.2
+G|Classic
+B|Classic|pencil|classic_pencil.myb||2.4
+B|Classic|charcoal|classic_charcoal.myb||4.0
+B|Classic|dry brush|classic_dry_brush.myb||3.6
+B|Classic|rounded|classic_rounded.myb||54.2
+B|Classic|knife|classic_knife.myb||36.3
+B|Classic|smudge+paint|classic_smudge_paint.myb||18.1
+B|Classic|ink eraser|classic_ink_eraser.myb|e|17.3
+B|Classic|blend+paint|classic_blend_paint.myb|s|26.9
+B|Classic|modelling2|classic_modelling2.myb|s|2.4
+B|Classic|modelling|classic_modelling.myb||6.0
+B|Classic|marker fat|classic_marker_fat.myb||23.9
+B|Classic|marker small|classic_marker_small.myb||5.4
+B|Classic|kabura|classic_kabura.myb||5.0
+B|Classic|pen|classic_pen.myb||5.2
+B|Classic|slow ink|classic_slow_ink.myb||7.9
+B|Classic|pointy ink|classic_pointy_ink.myb||5.2
+B|Classic|brush|classic_brush.myb||5.5
+B|Classic|textured ink|classic_textured_ink.myb||4.9
+B|Classic|ink blot|classic_ink_blot.myb||24.4
+B|Classic|coarse bulk 3|classic_coarse_bulk_3.myb||24.4
+B|Classic|coarse bulk 2|classic_coarse_bulk_2.myb||9.4
+B|Classic|coarse bulk 1|classic_coarse_bulk_1.myb||5.2
+B|Classic|short grass|classic_short_grass.myb||24.4
+B|Classic|long grass|classic_long_grass.myb||32.9
+B|Classic|bulk|classic_bulk.myb||72.5
+B|Classic|calligraphy|classic_calligraphy.myb||15.1
+B|Classic|puantilism|classic_puantilism.myb|s|8.3
+B|Classic|puantilism2|classic_puantilism2.myb|s|15.1
+B|Classic|impressionism|classic_impressionism.myb|s|14.8
+B|Classic|imp details|classic_imp_details.myb|s|14.8
+B|Classic|imp blending|classic_imp_blending.myb|s|14.8
+B|Classic|wet knife|classic_wet_knife.myb|s|19.9
+B|Classic|blending knife|classic_blending_knife.myb|s|46.7
+B|Classic|smudge|classic_smudge.myb|s|9.9
+B|Classic|blur|classic_blur.myb|s|14.8
+G|Deevad
+B|Deevad|rough|deevad_rough.myb||5.5
+B|Deevad|4H pencil|deevad_4H_pencil.myb||4.2
+B|Deevad|2B pencil|deevad_2B_pencil.myb||4.2
+B|Deevad|pen|deevad_pen.myb||4.1
+B|Deevad|kneaded eraser|deevad_kneaded_eraser.myb|e|7.5
+B|Deevad|kneaded eraser large|deevad_kneaded_eraser_large.myb|e|82.5
+B|Deevad|large hard eraser|deevad_large_hard_eraser.myb|e|54.8
+B|Deevad|thin hard eraser|deevad_thin_hard_eraser.myb|e|6.7
+B|Deevad|basic digital brush|deevad_basic_digital_brush.myb||41.0
+B|Deevad|basic digital brush smudging|deevad_basic_digital_brush_smudging.myb|s|36.3
+B|Deevad|basic digital knife|deevad_basic_digital_knife.myb||41.0
+B|Deevad|basic digital knife smudging|deevad_basic_digital_knife_smudging.myb|s|51.6
+B|Deevad|detail brush large|deevad_detail_brush_large.myb||6.7
+B|Deevad|detail brush large glazing|deevad_detail_brush_large_glazing.myb||6.7
+B|Deevad|detail brush thin|deevad_detail_brush_thin.myb||3.0
+B|Deevad|detail brush thin glazing|deevad_detail_brush_thin_glazing.myb||3.1
+B|Deevad|rigger brush|deevad_rigger_brush.myb||2.9
+B|Deevad|rigger brush thin|deevad_rigger_brush_thin.myb||2.3
+B|Deevad|thin watercolor|deevad_thin_watercolor.myb|s|14.8
+B|Deevad|large watercolor fringe|deevad_large_watercolor_fringe.myb|s|89.4
+B|Deevad|watercolor glazing|deevad_watercolor_glazing.myb|s|26.9
+B|Deevad|watercolor expressive|deevad_watercolor_expressive.myb|s|66.2
+B|Deevad|only water fringe|deevad_only_water_fringe.myb|s|89.4
+B|Deevad|sponge smudging|deevad_sponge_smudging.myb|s|44.4
+B|Deevad|ballpen|deevad_ballpen.myb||4.5
+B|Deevad|pen-note|deevad_pen-note.myb||3.9
+B|Deevad|soft-dip-pen|deevad_soft-dip-pen.myb||5.0
+B|Deevad|liner|deevad_liner.myb||4.5
+B|Deevad|brush|deevad_brush.myb||9.1
+B|Deevad|fill|deevad_fill.myb||29.8
+B|Deevad|spray|deevad_spray.myb||17.9
+B|Deevad|spray2|deevad_spray2.myb||5.2
+B|Deevad|chalk|deevad_chalk.myb||3.6
+B|Deevad|grainy blending|deevad_grainy_blending.myb|s|9.9
+B|Deevad|blending|deevad_blending.myb|s|38.2
+B|Deevad|airbrush|deevad_airbrush.myb||219.9
+G|Favorites
+G|Ramon
+B|Ramon|B-pencil|ramon_B-pencil.myb||4.3
+B|Ramon|2B pencil|ramon_2B_pencil.myb||3.0
+B|Ramon|P. Shade|ramon_P._Shade.myb||2.6
+B|Ramon|Sketch 1|ramon_Sketch_1.myb||3.0
+B|Ramon|Soft Eraser|ramon_Soft_Eraser.myb|e|14.8
+B|Ramon|Hard Eraser|ramon_Hard_Eraser.myb|e|24.4
+B|Ramon|Thin Pen|ramon_Thin_Pen.myb||5.9
+B|Ramon|Pen|ramon_Pen.myb||6.3
+B|Ramon|PenBrush|ramon_PenBrush.myb||7.1
+B|Ramon|Marker|ramon_Marker.myb||37.1
+B|Ramon|Delayed |ramon_Delayed_.myb||5.4
+B|Ramon|100% Opaque|ramon_100__Opaque.myb||40.6
+B|Ramon|Round|ramon_Round.myb||19.9
+B|Ramon|Round Bl|ramon_Round_Bl.myb|s|40.6
+B|Ramon|BigAirbrush|ramon_BigAirbrush.myb||72.5
+B|Ramon|RS blendOP|ramon_RS_blendOP.myb|s|33.6
+B|Ramon|wet round|ramon_wet_round.myb||43.1
+B|Ramon|Wet Direction|ramon_Wet_Direction.myb|s|21.4
+B|Ramon|Classic Paint|ramon_Classic_Paint.myb|s|26.9
+B|Ramon|Blur Fast|ramon_Blur_Fast.myb|s|66.2
+B|Ramon|Smear|ramon_Smear.myb|s|59.9
+B|Ramon|Knife|ramon_Knife.myb|s|44.8
+B|Ramon|Grain|ramon_Grain.myb|s|19.9
+B|Ramon|Dirty Noise|ramon_Dirty_Noise.myb|s|17.9
+B|Ramon|Pastel 1|ramon_Pastel_1.myb||4.1
+B|Ramon|Beamlight|ramon_Beamlight.myb||59.3
+B|Ramon|Glow Airbrush|ramon_Glow_Airbrush.myb||231.2
+B|Ramon|Clouds|ramon_Clouds.myb||26.1
+G|Experimental
+B|Experimental|1pixel|experimental_1pixel.myb||1.1
+B|Experimental|pixel hardink|experimental_pixel_hardink.myb||1.1
+B|Experimental|pixelblocking|experimental_pixelblocking.myb||14.8
+B|Experimental|basic|experimental_basic.myb||14.8
+B|Experimental|subtle pencil|experimental_subtle_pencil.myb||3.9
+B|Experimental|hard sting|experimental_hard_sting.myb||17.9
+B|Experimental|glow|experimental_glow.myb||17.9
+B|Experimental|soft|experimental_soft.myb||8.1
+B|Experimental|track|experimental_track.myb||1.3
+B|Experimental|speed blot|experimental_speed_blot.myb||6.8
+B|Experimental|fur|experimental_fur.myb||2.6
+B|Experimental|soft irregular|experimental_soft_irregular.myb||0.7
+B|Experimental|irregular ink|experimental_irregular_ink.myb||15.1
+B|Experimental|bubble|experimental_bubble.myb||0.7
+B|Experimental|small blot|experimental_small_blot.myb||6.8
+B|Experimental|particules 3|experimental_particules_3.myb||9.9
+B|Experimental|spaced-blot|experimental_spaced-blot.myb||13.2
+B|Experimental|hard blot|experimental_hard_blot.myb||4.5
+B|Experimental|sewing|experimental_sewing.myb||4.1
+B|Experimental|particules eraser|experimental_particules_eraser.myb||19.9
+B|Experimental|pick and drag|experimental_pick_and_drag.myb|s|32.9
+B|Experimental|leaves|experimental_leaves.myb||13.2
+B|Experimental|DNA brush|experimental_DNA_brush.myb||10.5
+G|Tanda
+B|Tanda|acrylic-03-only-water|tanda_acrylic-03-only-water.myb|s|36.3
+B|Tanda|acrylic-03-paint|tanda_acrylic-03-paint.myb||29.8
+B|Tanda|acrylic-03-with-water|tanda_acrylic-03-with-water.myb|s|36.3
+B|Tanda|acrylic-04-only-water|tanda_acrylic-04-only-water.myb|s|36.3
+B|Tanda|acrylic-04-paint|tanda_acrylic-04-paint.myb||26.9
+B|Tanda|acrylic-04-with-water|tanda_acrylic-04-with-water.myb|s|26.9
+B|Tanda|acrylic-05-only-water|tanda_acrylic-05-only-water.myb|s|5.4
+B|Tanda|acrylic-05-paint|tanda_acrylic-05-paint.myb||5.4
+B|Tanda|acrylic-05-with-water|tanda_acrylic-05-with-water.myb||5.4
+B|Tanda|charcoal-01|tanda_charcoal-01.myb||1.3
+B|Tanda|charcoal-03|tanda_charcoal-03.myb||2.4
+B|Tanda|charcoal-04|tanda_charcoal-04.myb||6.0
+B|Tanda|charcoal-blur1|tanda_charcoal-blur1.myb|s|26.9
+B|Tanda|marker-01|tanda_marker-01.myb||2.8
+B|Tanda|marker-05|tanda_marker-05.myb||7.7
+B|Tanda|oil-01-clean|tanda_oil-01-clean.myb|s|14.8
+B|Tanda|oil-01-paint|tanda_oil-01-paint.myb||14.8
+B|Tanda|oil-03-clean|tanda_oil-03-clean.myb|s|19.9
+B|Tanda|oil-03-paint|tanda_oil-03-paint.myb|s|19.9
+B|Tanda|oil-06-clean|tanda_oil-06-clean.myb|s|5.4
+B|Tanda|oil-06-paint|tanda_oil-06-paint.myb||5.4
+B|Tanda|oil-mop|tanda_oil-mop.myb|s|18.1
+B|Tanda|pencil-2b|tanda_pencil-2b.myb||2.3
+B|Tanda|pencil-8b|tanda_pencil-8b.myb||4.5
+B|Tanda|splatter-02|tanda_splatter-02.myb||7.3
+B|Tanda|splatter-04|tanda_splatter-04.myb||14.8
+B|Tanda|texture-03|tanda_texture-03.myb||14.8
+B|Tanda|texture-06|tanda_texture-06.myb||66.2
+B|Tanda|texture-12|tanda_texture-12.myb||14.8
+B|Tanda|water-01|tanda_water-01.myb|s|2.2
+B|Tanda|water-02|tanda_water-02.myb|s|3.3
+B|Tanda|water-05|tanda_water-05.myb|s|14.8
+B|Tanda|water-06|tanda_water-06.myb|s|49.1
+B|Tanda|watercolor-02-paint|tanda_watercolor-02-paint.myb|s|26.9
+B|Tanda|watercolor-02-water|tanda_watercolor-02-water.myb|s|26.9
+G|Kaerhon
+B|Kaerhon|flat bar l|kaerhon_v1_flat_bar_l.myb||2.1
+B|Kaerhon|inkster l|kaerhon_v1_inkster_l.myb||3.9
+B|Kaerhon|extreme round l|kaerhon_v1_extreme_round_l.myb||9.5
+B|Kaerhon|ink slow s|kaerhon_v1_ink_slow_s.myb||14.8
+B|Kaerhon|ink-slowline s|kaerhon_v1_ink-slowline_s.myb||2.2
+B|Kaerhon|smudge ink(0.7) sm|kaerhon_v1_smudge_ink_0.7__sm.myb|s|7.1
+B|Kaerhon|paint radius 2 sm|kaerhon_v1_paint_radius_2_sm.myb|s|22.0
+B|Kaerhon|Smear sm|kaerhon_v1_Smear_sm.myb|s|9.0
+B|Kaerhon|paint sm|kaerhon_v1_paint_sm.myb|s|40.2
+B|Kaerhon|paint barrr sm|kaerhon_v1_paint_barrr_sm.myb|s|40.2
+B|Kaerhon|wet paint sm|kaerhon_v1_wet_paint_sm.myb|s|9.0
+B|Kaerhon|Dirty Transparent sk|kaerhon_v1_Dirty_Transparent_sk.myb||2.6
+B|Kaerhon|classic sk|kaerhon_v1_classic_sk.myb||14.8
+B|Kaerhon|airsmudgeultimate sk|kaerhon_v1_airsmudgeultimate_sk.myb||9.0
+B|Kaerhon|Sketcher2 sk|kaerhon_v1_Sketcher2_sk.myb||4.5
+B|Kaerhon|airsmudge a|kaerhon_v1_airsmudge_a.myb|s|119.5
+B|Kaerhon|airbruch press a|kaerhon_v1_airbruch_press_a.myb||109.2
+B|Kaerhon|Airbrush a|kaerhon_v1_Airbrush_a.myb||219.9
+B|Kaerhon|classicroundblock static c|kaerhon_v1_classicroundblock_static_c.myb||120.7
+B|Kaerhon|fill c|kaerhon_v1_fill_c.myb||40.2

@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "kind": "project",
+  "name": "Clip Paint",
+  "description": "",
+  "author": "",
+  "createdBy": "CodeAssist",
+  "exportedAt": 1795206004630,
+  "isAndroid": true,
+  "packageName": "com.clippaint",
+  "moduleCount": 1,
+  "modules": [
+    "app"
+  ],
+  "moduleInfos": [
+    {
+      "name": "app",
+      "path": "app",
+      "type": "android-app",
+      "files": 388,
+      "size": 12527432
+    }
+  ],
+  "fileCount": 390,
+  "uncompressedSize": 12529907,
+  "hasBundledDeps": false,
+  "iconEntry": null,
+  "store": null
+}
