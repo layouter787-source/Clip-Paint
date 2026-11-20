@@ -36,7 +36,7 @@ class MainActivity : Activity() {
             setPadding(4, 8, 4, 16)
         }
         root.addView(header)
-        drawing = DrawingSurface()
+        drawing = DrawingSurface(this)
         root.addView(drawing, LinearLayout.LayoutParams(-1, 0, 1f))
 
         val tools = LinearLayout(this).apply {
@@ -60,7 +60,7 @@ class MainActivity : Activity() {
     }
 }
 
-private class DrawingSurface : View(MainActivity@null) {
+private class DrawingSurface(context: android.content.Context) : View(context) {
     private val strokes = mutableListOf<Pair<Path, Paint>>()
     private var activePath: Path? = null
     private var eraser = false
@@ -72,8 +72,6 @@ private class DrawingSurface : View(MainActivity@null) {
         strokeCap = Paint.Cap.ROUND
         strokeJoin = Paint.Join.ROUND
     }
-
-    constructor(context: android.content.Context) : this() { }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
