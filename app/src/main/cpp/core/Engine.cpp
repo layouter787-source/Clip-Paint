@@ -49,12 +49,14 @@ bool Engine::openProject(const std::string& path, int w, int h, bool transparent
         std::lock_guard<std::mutex> g(mtx);
         ed.cancelCanvasAction();
         if (ed.transforming) ed.cancelTransform();
+        ed.resetAnimation();
         bool loaded = false;
         if (fileExists(path)) loaded = loadProject(ed.doc, path);
         if (!loaded) {
             ed.doc.create(w, h);
             ed.doc.paperVisible = !transparent;
         }
+        ed.loadAnimation(path + ".anim");
         ed.xform = LayerXform();
         ed.dpi = dpi;
         ed.fitView();
@@ -68,7 +70,9 @@ bool Engine::saveProject(const std::string& path) {
     std::lock_guard<std::mutex> g(mtx);
     if (ed.transforming) ed.applyTransform();
     ed.savePrefs();
-    return ClipPaint::saveProject(ed.doc, path);
+    const bool documentSaved = ClipPaint::saveProject(ed.doc, path);
+    const bool animationSaved = ed.saveAnimation(path + ".anim");
+    return documentSaved && animationSaved;
 }
 
 bool Engine::exportPng(const std::string& path) {
@@ -196,8 +200,9 @@ void Engine::frame() {
         needFit_ = false;
     }
     const double now = nowSeconds();
+    ed.updateAnimation(now);
     ed.update(now);
-    const bool keep = ed.hasPendingWork() || ed.canvasBusy() || ed.transforming || ed.doc.hasSelection() ||
+    const bool keep = ed.animation.playing() || ed.hasPendingWork() || ed.canvasBusy() || ed.transforming || ed.doc.hasSelection() ||
                       now < ed.ringUntil || now < ed.toastUntil || input_.busy();
     rd_.syncDocument(ed.doc, ed.xform);
     rd_.beginFrame();
