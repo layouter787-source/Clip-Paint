@@ -255,6 +255,7 @@ class EditorActivity : Activity() {
     private fun openToolPanel(tool: Int, tab: Int) {
         panelKind = 1
         layersPanel.visibility = View.GONE
+        animationPanel.visibility = View.GONE
         toolPanel.visibility = View.VISIBLE
         panelHost.visibility = View.VISIBLE
         toolPanel.open(tool, tab)
@@ -276,6 +277,7 @@ class EditorActivity : Activity() {
         }
         panelKind = 2
         toolPanel.visibility = View.GONE
+        animationPanel.visibility = View.GONE
         layersPanel.visibility = View.VISIBLE
         panelHost.visibility = View.VISIBLE
         layersPanel.refresh()
