@@ -98,7 +98,7 @@ class AnimationPanel(
         val frame = state[1]
         val count = state[2]
         val playing = state[3] == 1
-        frameInfo.text = "Frame \${frame + 1} / $count    •    \${fps} FPS" +
+        frameInfo.text = "Frame ${frame + 1} / $count    •    ${fps} FPS" +
             if (playing) "    •    Reproduzindo" else ""
         (controls.getChildAt(1) as? TextView)?.text = if (playing) "Ⅱ" else "▶"
 
