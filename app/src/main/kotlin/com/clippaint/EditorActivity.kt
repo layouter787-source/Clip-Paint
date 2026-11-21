@@ -40,6 +40,7 @@ class EditorActivity : Activity() {
     private lateinit var panelHost: FrameLayout
     private lateinit var toolPanel: ToolPanel
     private lateinit var layersPanel: LayersPanel
+    private lateinit var animationPanel: AnimationPanel
     private lateinit var toastView: TextView
     private lateinit var undoBtn: IconButton
     private lateinit var redoBtn: IconButton
@@ -52,7 +53,7 @@ class EditorActivity : Activity() {
     private var lastState = IntArray(0)
     private var ticks = 0
     private var fitted = false
-    private var panelKind = 0  // 0 nenhum, 1 ferramenta, 2 camadas
+    private var panelKind = 0  // 0 nenhum, 1 ferramenta, 2 camadas, 3 animacao
 
     private val ticker = object : Runnable {
         override fun run() {
@@ -100,7 +101,13 @@ class EditorActivity : Activity() {
         // barra superior
         val home = IconButton(this, R.drawable.ic_back, 46f, 24f).tip("Início").click { finish() }
         val layers = IconButton(this, R.drawable.ic_layers, 46f, 24f).tip("Camadas").click { toggleLayers() }
-        topLeft = pill(home, layers)
+        val animation = label(this, "Anim", 12f, T.TEXT, true).apply {
+            setPadding(dp(12f), dp(10f), dp(12f), dp(10f))
+            background = roundBg(T.SURFACE2, dp(18f).toFloat())
+            contentDescription = "Abrir timeline de animação"
+            setOnClickListener { toggleAnimation() }
+        }
+        topLeft = pill(home, layers, animation)
         undoBtn = IconButton(this, R.drawable.ic_undo, 46f, 24f).tip("Desfazer").click { Native.undo() }
         redoBtn = IconButton(this, R.drawable.ic_redo, 46f, 24f).tip("Refazer").click { Native.redo() }
         val more = IconButton(this, R.drawable.ic_more, 46f, 24f).tip("Mais opções")
@@ -120,10 +127,13 @@ class EditorActivity : Activity() {
         panelHost = FrameLayout(this)
         toolPanel = ToolPanel(this, { closePanels() }, { startEyedropper() })
         layersPanel = LayersPanel(this) { closePanels() }
+        animationPanel = AnimationPanel(this) { tick() }
         panelHost.addView(toolPanel, FrameLayout.LayoutParams(MATCH, MATCH))
         panelHost.addView(layersPanel, FrameLayout.LayoutParams(MATCH, MATCH))
+        panelHost.addView(animationPanel, FrameLayout.LayoutParams(MATCH, MATCH))
         toolPanel.visibility = View.GONE
         layersPanel.visibility = View.GONE
+        animationPanel.visibility = View.GONE
         panelHost.visibility = View.GONE
         root.addView(panelHost, flp(MATCH, dp(480f), Gravity.BOTTOM))
 
@@ -276,6 +286,20 @@ class EditorActivity : Activity() {
         panelHost.visibility = View.GONE
         toolPanel.visibility = View.GONE
         layersPanel.visibility = View.GONE
+        animationPanel.visibility = View.GONE
+    }
+
+    private fun toggleAnimation() {
+        if (panelKind == 3) {
+            closePanels()
+            return
+        }
+        panelKind = 3
+        toolPanel.visibility = View.GONE
+        layersPanel.visibility = View.GONE
+        animationPanel.visibility = View.VISIBLE
+        panelHost.visibility = View.VISIBLE
+        animationPanel.refresh(true)
     }
 
     private fun startEyedropper() {
@@ -299,6 +323,7 @@ class EditorActivity : Activity() {
         m.menu.add(0, 8, 7, "Fundo visível").isCheckable = true
         m.menu.findItem(8).isChecked = Native.getFlag(3)
         m.menu.add(0, 9, 8, "Fundo = cor atual")
+        m.menu.add(0, 10, 9, "Animação / Timeline")
         m.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 1 -> {
@@ -313,6 +338,7 @@ class EditorActivity : Activity() {
                 7 -> Native.setFlag(2, !Native.getFlag(2))
                 8 -> Native.setFlag(3, !Native.getFlag(3))
                 9 -> Native.setPaperColor(Native.getColor())
+                10 -> toggleAnimation()
             }
             true
         }
@@ -376,6 +402,7 @@ class EditorActivity : Activity() {
         }
         if (panelKind == 2 && ticks % 10 == 0) layersPanel.refresh()
         if (panelKind == 1) toolPanel.tick()
+        if (panelKind == 3) animationPanel.refresh()
     }
 
     // ------------------------------------------------------------------ ciclo de vida
@@ -388,6 +415,7 @@ class EditorActivity : Activity() {
 
     override fun onPause() {
         handler.removeCallbacks(ticker)
+        if (::animationPanel.isInitialized) Native.animationSetPlaying(false)
         saveNow()
         super.onPause()
     }
