@@ -966,6 +966,7 @@ void Editor::newDocument(int w, int h, bool transparentPaper) {
     cancelCanvasAction();
     if (transforming) cancelTransform();
     doc.create(w, h);
+    resetAnimation();
     doc.paperVisible = !transparentPaper;
     fitView();
     toast("Nova tela " + std::to_string(w) + "x" + std::to_string(h));
