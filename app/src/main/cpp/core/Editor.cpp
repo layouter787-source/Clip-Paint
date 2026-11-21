@@ -582,7 +582,6 @@ void Editor::syncAnimationTracks() {
     if (animation.frameCount() < 1) animation.setFrameCount(1);
 
     std::unordered_set<uint32_t> live;
-    const size_t tileCount = (size_t)doc.tilesX() * (size_t)doc.tilesY();
     for (Layer& layer : doc.state.layers) {
         live.insert(layer.id);
         auto binding = animationTracks_.find(layer.id);
@@ -596,11 +595,14 @@ void Editor::syncAnimationTracks() {
                 for (auto& candidate : animation.tracks())
                     if (candidate.id == trackId) { track = &candidate; break; }
                 if (!track || frame >= (int)track->frames.size()) continue;
-                AnimationCel cel;
-                cel.tiles.assign(tileCount, nullptr);
                 const int visibleFrame = displayedAnimationFrame_ >= 0 ? displayedAnimationFrame_ : animation.currentFrame();
-                if (frame == visibleFrame) cel.tiles = layer.tiles;
-                animationCels_[track->frames[(size_t)frame].celId] = std::move(cel);
+                if (frame == visibleFrame) {
+                    AnimationCel cel;
+                    const bool hasPixels = std::any_of(layer.tiles.begin(), layer.tiles.end(),
+                        [](const TilePtr& tile) { return (bool)tile; });
+                    if (hasPixels) cel.tiles = layer.tiles;
+                    if (hasPixels) animationCels_[track->frames[(size_t)frame].celId] = std::move(cel);
+                }
             }
         } else {
             trackId = binding->second;
@@ -617,10 +619,6 @@ void Editor::syncAnimationTracks() {
             while ((int)track->frames.size() < animation.frameCount()) {
                 const int at = (int)track->frames.size();
                 animation.insertFrame(trackId, at);
-                const uint64_t celId = track->frames[(size_t)at].celId;
-                AnimationCel cel;
-                cel.tiles.assign(tileCount, nullptr);
-                animationCels_[celId] = std::move(cel);
             }
         }
     }
@@ -650,7 +648,13 @@ void Editor::storeAnimationFrame(int frame) {
         for (const AnimationTrack& track : animation.tracks()) {
             if (track.id != binding->second || frame >= (int)track.frames.size()) continue;
             const uint64_t celId = track.frames[(size_t)frame].celId;
-            if (celId != 0) animationCels_[celId].tiles = layer.tiles;
+            if (celId != 0) {
+                auto& tiles = animationCels_[celId].tiles;
+                const bool hasPixels = std::any_of(layer.tiles.begin(), layer.tiles.end(),
+                    [](const TilePtr& tile) { return (bool)tile; });
+                if (hasPixels) tiles = layer.tiles;
+                else tiles.clear();
+            }
             break;
         }
     }
@@ -673,7 +677,7 @@ void Editor::applyAnimationFrame(int frame) {
         }
         const uint64_t celId = found->frames[(size_t)frame].celId;
         const auto cel = animationCels_.find(celId);
-        if (cel == animationCels_.end()) layer.tiles.assign(tileCount, nullptr);
+        if (cel == animationCels_.end() || cel->second.tiles.empty()) layer.tiles.assign(tileCount, nullptr);
         else layer.tiles = cel->second.tiles;
         if (layer.tiles.size() != tileCount) layer.tiles.resize(tileCount);
     }
@@ -789,7 +793,8 @@ bool Editor::saveAnimation(const std::string& path) {
     const uint32_t width = (uint32_t)doc.width(), height = (uint32_t)doc.height();
     const uint32_t frameCount = (uint32_t)animation.frameCount();
     const uint32_t trackCount = (uint32_t)animation.tracks().size();
-    const uint32_t celCount = (uint32_t)animationCels_.size();
+    uint32_t celCount = 0;
+    for (const auto& entry : animationCels_) if (!entry.second.tiles.empty()) ++celCount;
     const int32_t fps = animation.fps(), current = animation.currentFrame();
     const OnionSkinSettings onion = animation.onionSkin();
     bool ok = put(magic) && put(width) && put(height) && put(fps) && put(frameCount) &&
@@ -825,6 +830,7 @@ bool Editor::saveAnimation(const std::string& path) {
     }
     for (const auto& entry : animationCels_) {
         if (!ok) break;
+        if (entry.second.tiles.empty()) continue;
         const uint64_t celId = entry.first;
         uint32_t populated = 0;
         for (const TilePtr& tile : entry.second.tiles) if (tile) ++populated;
@@ -914,7 +920,7 @@ bool Editor::loadAnimation(const std::string& path) {
         ok = get(celId) && get(populated) && populated <= expectedTiles;
         if (!ok) break;
         AnimationCel cel;
-        cel.tiles.assign(expectedTiles, nullptr);
+        if (populated > 0) cel.tiles.assign(expectedTiles, nullptr);
         for (uint32_t k = 0; ok && k < populated; ++k) {
             uint32_t index = 0;
             ok = get(index) && index < expectedTiles;
