@@ -71,6 +71,11 @@ jobs:
       - name: Apply Kotlin compatibility patch
         run: patch --forward -p1 < ci/patches/001-kotlin-dp-jvm-signature.patch
 
+      - name: Test native timeline model
+        run: |
+          g++ -std=c++20 -Wall -Wextra -Werror -Iapp/src/main/cpp/animation tests/native/TimelineTests.cpp app/src/main/cpp/animation/Timeline.cpp -o /tmp/clip-paint-timeline-tests
+          /tmp/clip-paint-timeline-tests
+
       - name: Build debug APK
         run: gradle --no-daemon --stacktrace assembleDebug
 
