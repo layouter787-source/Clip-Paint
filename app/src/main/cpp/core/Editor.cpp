@@ -623,14 +623,17 @@ void Editor::syncAnimationTracks() {
         }
     }
 
+    bool removedTrack = false;
     for (auto it = animationTracks_.begin(); it != animationTracks_.end();) {
         if (live.find(it->first) == live.end()) {
             animation.removeTrack(it->second);
             it = animationTracks_.erase(it);
+            removedTrack = true;
         } else {
             ++it;
         }
     }
+    if (removedTrack) pruneAnimationCels();
     // Keep the visual track order aligned with the document layer stack.
     int order = 0;
     for (const Layer& layer : doc.state.layers) {
@@ -638,6 +641,17 @@ void Editor::syncAnimationTracks() {
         if (binding != animationTracks_.end()) animation.moveTrack(binding->second, order++);
     }
     if (displayedAnimationFrame_ < 0) displayedAnimationFrame_ = animation.currentFrame();
+}
+
+void Editor::pruneAnimationCels() {
+    std::unordered_set<uint64_t> referenced;
+    for (const AnimationTrack& track : animation.tracks())
+        for (const AnimationFrame& frame : track.frames)
+            if (frame.celId != 0) referenced.insert(frame.celId);
+    for (auto it = animationCels_.begin(); it != animationCels_.end();) {
+        if (referenced.find(it->first) == referenced.end()) it = animationCels_.erase(it);
+        else ++it;
+    }
 }
 
 void Editor::storeAnimationFrame(int frame) {
@@ -742,6 +756,7 @@ bool Editor::removeAnimationFrame() {
         if (!animation.removeFrame(id, removing)) return false;
     if (!animation.setFrameCount(animation.frameCount() - 1)) return false;
     const int target = std::min(removing, animation.frameCount() - 1);
+    pruneAnimationCels();
     displayedAnimationFrame_ = -1;
     animation.seek(target);
     applyAnimationFrame(target);
