@@ -189,6 +189,7 @@ private:
     void syncAnimationTracks();
     void storeAnimationFrame(int frame);
     void applyAnimationFrame(int frame);
+    void pruneAnimationCels();
 
     std::string internalDir_, externalDir_;
     int screenW_ = 1080, screenH_ = 1920;
