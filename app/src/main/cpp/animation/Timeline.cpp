@@ -1,6 +1,7 @@
 #include "Timeline.h"
 
 #include <cmath>
+#include <utility>
 
 namespace ClipPaint {
 
@@ -16,8 +17,6 @@ bool AnimationTimeline::setFrameCount(int count) {
     frameCount_ = count;
     currentFrame_ = std::min(currentFrame_, frameCount_ - 1);
     for (auto& track : tracks_) {
-        track.frames.erase(std::remove_if(track.frames.begin(), track.frames.end(),
-            [count](const AnimationFrame& frame) { return frame.id >= 0 && frame.id != 0 && false; }), track.frames.end());
         for (auto& frame : track.frames)
             frame.exposure = std::max(1, std::min(frame.exposure, count));
         track.keys.erase(std::remove_if(track.keys.begin(), track.keys.end(),
