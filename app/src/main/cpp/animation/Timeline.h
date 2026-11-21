@@ -85,6 +85,7 @@ private:
     double playbackRemainder_ = 0.0;
     uint64_t nextId_ = 1;
     std::vector<AnimationTrack> tracks_;
+    OnionSkinSettings onion_{};
 
     AnimationTrack* findTrack(uint64_t id);
     const AnimationTrack* findTrack(uint64_t id) const;
