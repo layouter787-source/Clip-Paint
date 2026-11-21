@@ -2,10 +2,7 @@
 // transformacao (mover, escalar, girar, perspectiva), fila de amostras, arquivos e preferencias.
 #pragma once
 
-#include "../animation/Timeline.h"
 #include "../brush/StrokeEngine.h"
-
-#include <unordered_map>
 #include "../graphics/Gfx.h"
 #include "../io/IO.h"
 #include "../layers/Document.h"
@@ -22,7 +19,6 @@ public:
     Editor();
 
     Document doc;
-    AnimationTimeline animation;
     ViewState view;
     ToolId tool = ToolId::Brush;
     Color color{0.08f, 0.09f, 0.12f, 1.0f};
@@ -131,20 +127,6 @@ public:
     void togglePaper();
     void addRecentColor(Color c);
 
-    // --- animacao raster integrada ao documento/camadas ---
-    void resetAnimation();
-    bool loadAnimation(const std::string& path);
-    bool saveAnimation(const std::string& path);
-    bool seekAnimation(int frame);
-    bool setAnimationFps(int fps);
-    bool setAnimationFrameCount(int count);
-    bool insertAnimationFrame(bool duplicateCurrent);
-    bool removeAnimationFrame();
-    bool setAnimationPlaying(bool playing);
-    int animationTrackCount();
-    std::string animationTrackName(int index);
-    void updateAnimation(double now);
-
     void toast(const std::string& s, double seconds = 2.0);
 
 private:
@@ -177,18 +159,6 @@ private:
     Vec2 dragQuad_[4];
     float dragRotStart_ = 0;
     bool opacityEditStarted_ = false;
-
-    struct AnimationCel {
-        std::vector<TilePtr> tiles;
-    };
-    std::unordered_map<uint32_t, uint64_t> animationTracks_; // layer id -> track id
-    std::unordered_map<uint64_t, AnimationCel> animationCels_;
-    int displayedAnimationFrame_ = -1;
-    double lastAnimationTime_ = 0.0;
-    bool animationReady_ = false;
-    void syncAnimationTracks();
-    void storeAnimationFrame(int frame);
-    void applyAnimationFrame(int frame);
 
     std::string internalDir_, externalDir_;
     int screenW_ = 1080, screenH_ = 1920;
