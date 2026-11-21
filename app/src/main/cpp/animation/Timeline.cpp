@@ -51,12 +51,6 @@ const AnimationTrack* AnimationTimeline::findTrack(uint64_t id) const {
     return nullptr;
 }
 
-int AnimationTimeline::frameIndex(const AnimationTrack& track, int frame) {
-    for (size_t i = 0; i < track.frames.size(); ++i)
-        if (static_cast<int>(i) == frame) return static_cast<int>(i);
-    return -1;
-}
-
 bool AnimationTimeline::removeTrack(uint64_t id) {
     const auto it = std::find_if(tracks_.begin(), tracks_.end(),
         [id](const AnimationTrack& track) { return track.id == id; });
