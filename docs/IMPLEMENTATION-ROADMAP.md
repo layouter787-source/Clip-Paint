@@ -22,3 +22,7 @@ Cada fase deve ter integração real no editor, persistência, testes e build An
 
 ## Estado honesto
 Esta primeira entrega adiciona o núcleo de dados da timeline em C++; ainda não expõe a timeline na interface nem associa cels às camadas raster atuais. Não anunciar a animação como utilizável até concluir essas integrações.
+
+
+## Integração contínua
+O workflow Android CI também é acionado por pushes em `feature/**`, para validar as fases antes de qualquer merge para `main`.
