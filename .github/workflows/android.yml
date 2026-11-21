@@ -39,8 +39,10 @@ jobs:
           mkdir -p /tmp/clip-paint-caproj
           unzip -q "clip-paint-pro (3).caproj" -d /tmp/clip-paint-caproj
           test -d /tmp/clip-paint-caproj/project/app/src/main
-          cp -a /tmp/clip-paint-caproj/project/. .
-          cp /tmp/clip-paint-caproj/manifest.json ./manifest.json
+          # The repository is the source of truth after the initial import.
+          # Seed only missing files; never overwrite maintained source with a stale archive.
+          cp -an /tmp/clip-paint-caproj/project/. .
+          cp -n /tmp/clip-paint-caproj/manifest.json ./manifest.json || true
           test -f .platform/workspace.json
           test -f README.md
           test -f manifest.json
