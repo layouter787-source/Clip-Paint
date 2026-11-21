@@ -17,6 +17,7 @@ bool AnimationTimeline::setFrameCount(int count) {
     frameCount_ = count;
     currentFrame_ = std::min(currentFrame_, frameCount_ - 1);
     for (auto& track : tracks_) {
+        if (track.frames.size() > static_cast<size_t>(count)) track.frames.resize(static_cast<size_t>(count));
         for (auto& frame : track.frames)
             frame.exposure = std::max(1, std::min(frame.exposure, count));
         track.keys.erase(std::remove_if(track.keys.begin(), track.keys.end(),
