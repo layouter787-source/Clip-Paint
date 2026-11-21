@@ -25,6 +25,15 @@ android {
         }
     }
 
+    buildTypes {
+        getByName("debug") {
+            // Install the feature build alongside the stable/main app.
+            // This avoids silently opening the old app when debug signatures differ.
+            applicationIdSuffix = ".feature"
+            versionNameSuffix = "-feature"
+        }
+    }
+
     buildFeatures {
         buildConfig = true
     }
