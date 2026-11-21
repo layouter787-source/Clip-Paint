@@ -721,6 +721,7 @@ bool Editor::setAnimationFrameCount(int count) {
     if (count < 1 || count > kMaxTimelineFrames) return false;
     storeAnimationFrame(displayedAnimationFrame_);
     if (!animation.setFrameCount(count)) return false;
+    pruneAnimationCels();
     displayedAnimationFrame_ = -1;
     syncAnimationTracks();
     applyAnimationFrame(animation.currentFrame());
@@ -746,7 +747,10 @@ bool Editor::insertAnimationFrame(bool duplicateCurrent) {
             if (!animation.duplicateFrame(id, animation.currentFrame(), insertion)) return false;
             const uint64_t destinationCel = track->frames[(size_t)insertion].celId;
             const auto source = animationCels_.find(sourceCel);
-            if (source != animationCels_.end()) animationCels_[destinationCel] = source->second;
+            if (source != animationCels_.end()) {
+                AnimationCel copied = source->second;
+                animationCels_[destinationCel] = std::move(copied);
+            }
         } else if (animation.insertFrame(id, insertion) == 0) {
             return false;
         }
