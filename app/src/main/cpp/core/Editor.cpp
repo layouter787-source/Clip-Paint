@@ -598,7 +598,8 @@ void Editor::syncAnimationTracks() {
                 if (!track || frame >= (int)track->frames.size()) continue;
                 AnimationCel cel;
                 cel.tiles.assign(tileCount, nullptr);
-                if (frame == displayedAnimationFrame_ || displayedAnimationFrame_ < 0) cel.tiles = layer.tiles;
+                const int visibleFrame = displayedAnimationFrame_ >= 0 ? displayedAnimationFrame_ : animation.currentFrame();
+                if (frame == visibleFrame) cel.tiles = layer.tiles;
                 animationCels_[track->frames[(size_t)frame].celId] = std::move(cel);
             }
         } else {
@@ -631,6 +632,12 @@ void Editor::syncAnimationTracks() {
         } else {
             ++it;
         }
+    }
+    // Keep the visual track order aligned with the document layer stack.
+    int order = 0;
+    for (const Layer& layer : doc.state.layers) {
+        const auto binding = animationTracks_.find(layer.id);
+        if (binding != animationTracks_.end()) animation.moveTrack(binding->second, order++);
     }
     if (displayedAnimationFrame_ < 0) displayedAnimationFrame_ = animation.currentFrame();
 }
