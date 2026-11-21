@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.ScrollView
@@ -67,7 +68,7 @@ class AnimationPanel(
         })
         val controlsScroll = HorizontalScrollView(context).apply {
             isHorizontalScrollBarEnabled = false
-            addView(controls, HorizontalScrollView.LayoutParams(WRAP, WRAP))
+            addView(controls, FrameLayout.LayoutParams(WRAP, WRAP))
         }
         addView(controlsScroll, lp(MATCH, WRAP))
 
@@ -79,7 +80,7 @@ class AnimationPanel(
             isVerticalScrollBarEnabled = false
         }
         tracksHost.orientation = VERTICAL
-        scroll.addView(tracksHost, ScrollView.LayoutParams(MATCH, WRAP))
+        scroll.addView(tracksHost, FrameLayout.LayoutParams(MATCH, WRAP))
         addView(scroll, lp(MATCH, dp(164f)))
         refresh(true)
     }
@@ -150,7 +151,7 @@ class AnimationPanel(
             }
             val strip = HorizontalScrollView(context).apply {
                 isHorizontalScrollBarEnabled = false
-                addView(cells, HorizontalScrollView.LayoutParams(WRAP, WRAP))
+                addView(cells, FrameLayout.LayoutParams(WRAP, WRAP))
             }
             line.addView(strip, lp(0, dp(38f)).apply { weight = 1f })
             tracksHost.addView(line, lp(MATCH, dp(40f)))
