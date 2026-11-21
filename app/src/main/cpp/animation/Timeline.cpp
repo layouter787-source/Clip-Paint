@@ -78,7 +78,7 @@ uint64_t AnimationTimeline::insertFrame(uint64_t id, int atFrame, uint64_t celId
     if (!track || track->locked || atFrame < 0 || atFrame >= kMaxTimelineFrames) return 0;
     AnimationFrame frame;
     frame.id = nextId_++;
-    frame.celId = celId;
+    frame.celId = celId == 0 ? frame.id : celId;
     const int insertAt = std::min(atFrame, static_cast<int>(track->frames.size()));
     track->frames.insert(track->frames.begin() + insertAt, frame);
     if (static_cast<int>(track->frames.size()) > frameCount_)
