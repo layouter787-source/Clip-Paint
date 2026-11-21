@@ -88,7 +88,6 @@ private:
 
     AnimationTrack* findTrack(uint64_t id);
     const AnimationTrack* findTrack(uint64_t id) const;
-    static int frameIndex(const AnimationTrack& track, int frame);
 };
 
 } // namespace ClipPaint
