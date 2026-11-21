@@ -436,6 +436,8 @@ JF(void, layerOp)(JNIEnv*, jclass, jint op, jint i, jfloat f) {
         }
     }
     Engine::get().requestRender();
+}
+
 // ------------------------------------------------------------- animacao
 
 JF(jintArray, animationState)(JNIEnv* env, jclass) {
@@ -519,4 +521,3 @@ JF(jstring, animationTrackName)(JNIEnv* env, jclass, jint index) {
     return toJ(env, E.ed.animationTrackName(index));
 }
 
-}
