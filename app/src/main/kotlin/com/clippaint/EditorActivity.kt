@@ -75,6 +75,7 @@ class EditorActivity : Activity() {
         project = p
         buildUi()
         Native.openProject(project.cpd(this).absolutePath, project.w, project.h, project.transparent, project.dpi)
+        animationPanel.refresh(true)
         if (intent.getBooleanExtra("new", false) && !project.transparent) Native.setPaperColor(project.paper)
     }
 
