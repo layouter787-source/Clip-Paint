@@ -79,6 +79,8 @@ uint64_t AnimationTimeline::insertFrame(uint64_t id, int atFrame, uint64_t celId
     AnimationFrame frame;
     frame.id = nextId_++;
     frame.celId = celId == 0 ? frame.id : celId;
+    // Imported sidecar cel IDs share the same ID domain; keep future IDs collision-free.
+    if (frame.celId >= nextId_ && frame.celId < UINT64_MAX) nextId_ = frame.celId + 1;
     const int insertAt = std::min(atFrame, static_cast<int>(track->frames.size()));
     track->frames.insert(track->frames.begin() + insertAt, frame);
     if (static_cast<int>(track->frames.size()) > frameCount_)
