@@ -102,7 +102,7 @@ object Native {
     @JvmStatic external fun animationSeek(frame: Int): Boolean
     @JvmStatic external fun animationSetFps(fps: Int): Boolean
     @JvmStatic external fun animationSetFrameCount(count: Int): Boolean
-    /** duplicate=true cria um frame ligado ao cel atual; false cria um cel vazio */
+    /** duplicate=true duplica o cel atual de forma independente; false cria um cel vazio */
     @JvmStatic external fun animationInsertFrame(duplicate: Boolean): Boolean
     @JvmStatic external fun animationRemoveFrame(): Boolean
     @JvmStatic external fun animationSetPlaying(playing: Boolean): Boolean
