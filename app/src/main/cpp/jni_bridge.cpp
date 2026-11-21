@@ -436,4 +436,87 @@ JF(void, layerOp)(JNIEnv*, jclass, jint op, jint i, jfloat f) {
         }
     }
     Engine::get().requestRender();
+// ------------------------------------------------------------- animacao
+
+JF(jintArray, animationState)(JNIEnv* env, jclass) {
+    LOCK();
+    const AnimationTimeline& a = E.ed.animation;
+    const OnionSkinSettings& onion = a.onionSkin();
+    std::vector<jint> values = {
+        a.fps(), a.currentFrame(), a.frameCount(), a.playing() ? 1 : 0,
+        E.ed.animationTrackCount(), onion.enabled ? 1 : 0,
+        onion.previousFrames, onion.nextFrames
+    };
+    return toIntArray(env, values);
+}
+
+JF(jboolean, animationSeek)(JNIEnv*, jclass, jint frame) {
+    bool ok;
+    {
+        LOCK();
+        ok = E.ed.seekAnimation(frame);
+    }
+    if (ok) Engine::get().requestRender(12);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
+
+JF(jboolean, animationSetFps)(JNIEnv*, jclass, jint fps) {
+    bool ok;
+    {
+        LOCK();
+        ok = E.ed.setAnimationFps(fps);
+    }
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
+
+JF(jboolean, animationSetFrameCount)(JNIEnv*, jclass, jint count) {
+    bool ok;
+    {
+        LOCK();
+        ok = E.ed.setAnimationFrameCount(count);
+    }
+    if (ok) Engine::get().requestRender(12);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
+
+JF(jboolean, animationInsertFrame)(JNIEnv*, jclass, jboolean duplicate) {
+    bool ok;
+    {
+        LOCK();
+        ok = E.ed.insertAnimationFrame(duplicate != 0);
+    }
+    if (ok) Engine::get().requestRender(12);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
+
+JF(jboolean, animationRemoveFrame)(JNIEnv*, jclass) {
+    bool ok;
+    {
+        LOCK();
+        ok = E.ed.removeAnimationFrame();
+    }
+    if (ok) Engine::get().requestRender(12);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
+
+JF(jboolean, animationSetPlaying)(JNIEnv*, jclass, jboolean playing) {
+    bool ok;
+    {
+        LOCK();
+        ok = E.ed.setAnimationPlaying(playing != 0);
+    }
+    if (ok) Engine::get().requestRender(12);
+    return ok ? JNI_TRUE : JNI_FALSE;
+}
+
+JF(jint, animationTrackCount)(JNIEnv*, jclass) {
+    LOCK();
+    return E.ed.animationTrackCount();
+}
+
+JF(jstring, animationTrackName)(JNIEnv* env, jclass, jint index) {
+    LOCK();
+    return toJ(env, E.ed.animationTrackName(index));
+}
+
 }
