@@ -736,10 +736,20 @@ bool Editor::insertAnimationFrame(bool duplicateCurrent) {
     std::vector<uint64_t> trackIds;
     for (const AnimationTrack& track : animation.tracks()) trackIds.push_back(track.id);
     for (uint64_t id : trackIds) {
-        const bool ok = duplicateCurrent
-            ? animation.duplicateFrame(id, animation.currentFrame(), insertion)
-            : animation.insertFrame(id, insertion) != 0;
-        if (!ok) return false;
+        AnimationTrack* track = nullptr;
+        for (auto& candidate : animation.tracks())
+            if (candidate.id == id) { track = &candidate; break; }
+        if (!track) return false;
+        if (duplicateCurrent) {
+            if (animation.currentFrame() >= (int)track->frames.size()) return false;
+            const uint64_t sourceCel = track->frames[(size_t)animation.currentFrame()].celId;
+            if (!animation.duplicateFrame(id, animation.currentFrame(), insertion)) return false;
+            const uint64_t destinationCel = track->frames[(size_t)insertion].celId;
+            const auto source = animationCels_.find(sourceCel);
+            if (source != animationCels_.end()) animationCels_[destinationCel] = source->second;
+        } else if (animation.insertFrame(id, insertion) == 0) {
+            return false;
+        }
     }
     if (animation.frameCount() == oldCount && !animation.setFrameCount(oldCount + 1)) return false;
     return seekAnimation(std::min(insertion, animation.frameCount() - 1));
