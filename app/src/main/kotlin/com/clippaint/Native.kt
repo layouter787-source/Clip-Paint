@@ -95,4 +95,17 @@ object Native {
     /** 0 nova, 1 duplicar, 2 apagar, 3 mesclar, 4 subir, 5 descer, 6 limpar, 7 selecionar, 8 visivel, 9 bloquear,
      *  10 bloquear alfa, 11 modo de mistura, 12 opacidade, 13 iniciar edicao de opacidade */
     @JvmStatic external fun layerOp(op: Int, index: Int, value: Float)
+
+    // ---- timeline de animacao (frames raster associados as camadas) ----
+    /** [fps, frame atual (zero-based), total de frames, reproduzindo, faixas, onion ativo, anteriores, seguintes] */
+    @JvmStatic external fun animationState(): IntArray
+    @JvmStatic external fun animationSeek(frame: Int): Boolean
+    @JvmStatic external fun animationSetFps(fps: Int): Boolean
+    @JvmStatic external fun animationSetFrameCount(count: Int): Boolean
+    /** duplicate=true cria um frame ligado ao cel atual; false cria um cel vazio */
+    @JvmStatic external fun animationInsertFrame(duplicate: Boolean): Boolean
+    @JvmStatic external fun animationRemoveFrame(): Boolean
+    @JvmStatic external fun animationSetPlaying(playing: Boolean): Boolean
+    @JvmStatic external fun animationTrackCount(): Int
+    @JvmStatic external fun animationTrackName(index: Int): String
 }
