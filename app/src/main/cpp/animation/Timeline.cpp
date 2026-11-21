@@ -94,6 +94,7 @@ bool AnimationTimeline::duplicateFrame(uint64_t id, int sourceFrame, int destina
         destinationFrame < 0 || destinationFrame >= kMaxTimelineFrames) return false;
     AnimationFrame copy = track->frames[static_cast<size_t>(sourceFrame)];
     copy.id = nextId_++;
+    copy.celId = nextId_++; // duplicated frames start as independent editable cels
     const int at = std::min(destinationFrame, static_cast<int>(track->frames.size()));
     track->frames.insert(track->frames.begin() + at, copy);
     for (auto& key : track->keys) if (key.frame >= at) ++key.frame;
