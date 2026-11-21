@@ -640,7 +640,6 @@ void Editor::syncAnimationTracks() {
         const auto binding = animationTracks_.find(layer.id);
         if (binding != animationTracks_.end()) animation.moveTrack(binding->second, order++);
     }
-    if (displayedAnimationFrame_ < 0) displayedAnimationFrame_ = animation.currentFrame();
 }
 
 void Editor::pruneAnimationCels() {
